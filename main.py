@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import urllib
 
-from bing_image_downloader import downloader
+from bing_hashing_image_downloader import downloader
 
 def main():
     dir = "WCP"
@@ -12,7 +12,6 @@ def main():
     queries = classes_str.split(',')
 
     for q in queries:
-        q = '"' + q + '"'
         print('Starting Scraping for ' + str(q))
         try:
             downloader.download(q,
@@ -21,6 +20,7 @@ def main():
                                 adult_filter_off=False,
                                 timeout=60,
                                 filter='photo',
+                                size=(224, 224),
                                 verbose=True)
         except urllib.error.URLError:
             print('an error occured durring download')
