@@ -10,7 +10,7 @@ def main():
         classes_str = f.read()
 
     queries = classes_str.split(',')
-
+    assert len(queries) > 1
     for q in queries:
         print('Starting Scraping for ' + str(q))
         try:
@@ -19,7 +19,6 @@ def main():
                                 output_dir=dir,
                                 adult_filter_off=False,
                                 timeout=60,
-                                filter='photo',
                                 size=(224, 224),
                                 verbose=True)
         except urllib.error.URLError:
