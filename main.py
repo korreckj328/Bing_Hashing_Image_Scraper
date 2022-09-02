@@ -5,12 +5,18 @@ from bing_hashing_image_downloader import downloader
 
 
 def main():
-    dir = "WCP"
+    dir = "PhillipsParkZoo"
 
-    with open('PhillipsParkZooCollection.csv', 'r') as f:
-        classes_str = f.read()
+    with open("PhillipsParkZooCollection.csv", 'r') as f:
+        doc = f.read()
 
-    queries = classes_str.split(',\n')
+    doc_lines = doc.split(',\n')
+    queries: str = []
+    for line in doc_lines:
+        tmp = line.split(',')
+        for t in tmp:
+            if t != '':
+                queries.append(t)
     assert len(queries) > 1
     for q in queries:
         print('Starting Scraping for ' + str(q))
